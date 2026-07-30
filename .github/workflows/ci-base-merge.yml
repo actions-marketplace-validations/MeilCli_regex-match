@@ -4,12 +4,13 @@ on:
 jobs:
   merge:
     runs-on: ubuntu-latest
+    permissions: {}
     if: github.event_name == 'pull_request' && github.actor == 'MeilCli'
     steps:
       - run: sleep 10s
         name: wait for API&DB synchronized
         if: github.event.pull_request.title == 'update actions'
-      - uses: actions/github-script@v7
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         if: github.event.pull_request.title == 'update actions'
         with:
           github-token: ${{ secrets.MEILCLI_BOT }}
